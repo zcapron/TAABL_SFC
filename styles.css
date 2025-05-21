@@ -1,16 +1,14 @@
-/* Default Light Mode (GitHub Light) */
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f6f8fa; /* Light background */
-    color: #1f2328; /* Dark text */
+/* Light Mode (GitHub Light) */
+.light-mode {
+    background-color: #f6f8fa;
+    color: #1f2328;
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* GitHub Dark Mode */
+/* Dark Mode (GitHub Dark) */
 .dark-mode {
-    background-color: #0d1117; /* Dark background */
-    color: #c9d1d9; /* Light text */
+    background-color: #0d1117;
+    color: #c9d1d9;
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
@@ -18,13 +16,11 @@ body {
 .btn-success {
     background-color: #238636; /* GitHub green */
     border-color: #238636;
-    transition: background-color 0.3s ease;
 }
 
 .btn-danger {
     background-color: #da3633; /* GitHub red */
     border-color: #da3633;
-    transition: background-color 0.3s ease;
 }
 
 /* Toggle Switch Styling */
@@ -63,7 +59,7 @@ body {
 }
 
 input:checked + .slider {
-    background-color: #238636; /* GitHub green */
+    background-color: #238636;
 }
 
 input:checked + .slider:before {
