@@ -23,7 +23,7 @@ function updateTheme(isDark) {
 // Handle theme toggle event
 toggle.addEventListener("change", () => {
     const isDarkMode = toggle.checked;
-    
+
     // ✅ Ask user before switching
     const userConfirmed = confirm(`Do you want to switch to ${isDarkMode ? "Dark" : "Light"} Mode?`);
     
