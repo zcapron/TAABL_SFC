@@ -1,7 +1,9 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background: linear-gradient(to bottom, #e0e0e0, #c0c0c0); /* Light gray gradient */
+/*     background: linear-gradient(to bottom, #e0e0e0, #c0c0c0); /* Light gray gradient */
+    background-color: #0d1117; /* GitHub dark mode background */
+    color: #c9d1d9; /* Light gray text */
     background-attachment: fixed; /* Keeps the gradient fixed when scrolling */
 }
 button {
