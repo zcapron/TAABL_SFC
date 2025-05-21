@@ -1,20 +1,20 @@
+/* Default Light Mode (GitHub Light) */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-/*     background: linear-gradient(to bottom, #e0e0e0, #c0c0c0); /* Light gray gradient */
+    background-color: #f6f8fa; /* GitHub light mode background */
+    color: #1f2328; /* GitHub light text */
+    background-attachment: fixed;
+}
+
+/* GitHub Dark Mode */
+.dark-mode {
     background-color: #0d1117; /* GitHub dark mode background */
-    color: #c9d1d9; /* Light gray text */
-    background-attachment: fixed; /* Keeps the gradient fixed when scrolling */
-    .dark-mode {
-    background-color: #0d1117; /* GitHub dark background */
     color: #c9d1d9; /* Light text */
 }
-}
-button {
-/*     padding: 10px 20px;
-    margin: 5px;
-    font-size: 16px; */
-    .btn-success {
+
+/* Buttons */
+.btn-success {
     background-color: #238636; /* GitHub green */
     border-color: #238636;
 }
@@ -23,6 +23,7 @@ button {
     background-color: #da3633; /* GitHub red */
     border-color: #da3633;
 }
+
 /* Toggle Switch Styling */
 .switch {
     position: relative;
@@ -40,7 +41,10 @@ button {
 .slider {
     position: absolute;
     cursor: pointer;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: #ccc;
     border-radius: 24px;
     transition: 0.4s;
@@ -64,6 +68,4 @@ input:checked + .slider {
 
 input:checked + .slider:before {
     transform: translateX(26px);
-}
-
 }
