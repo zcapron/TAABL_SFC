@@ -1,10 +1,34 @@
 let port;
+const sensorValue = document.getElementById("sensorValue");
 const toggle = document.getElementById("themeToggle");
 const themeLabel = document.getElementById("themeLabel");
 const body = document.body;
 const startBtn = document.getElementById("startBtn");
 const stopBtn = document.getElementById("stopBtn");
-const sensorValue = document.getElementById("sensorValue");
+
+// Initialize Chart.js for real-time sensor data
+const ctx = document.getElementById("sensorChart").getContext("2d");
+const sensorChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [], // Time labels
+        datasets: [{
+            label: 'Sensor Data',
+            data: [],
+            borderColor: '#238636', // Green line (GitHub theme)
+            backgroundColor: 'rgba(35, 134, 54, 0.2)',
+            fill: true
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            x: { type: 'linear', position: 'bottom' },
+            y: { beginAtZero: true }
+        }
+    }
+});
 
 // Function to switch themes
 function updateTheme(isDark) {
@@ -23,8 +47,6 @@ function updateTheme(isDark) {
 // Handle theme toggle event
 toggle.addEventListener("change", () => {
     const isDarkMode = toggle.checked;
-    
-    // ✅ Ask user before switching
     const userConfirmed = confirm(`Do you want to switch to ${isDarkMode ? "Dark" : "Light"} Mode?`);
     
     if (userConfirmed) {
@@ -69,13 +91,29 @@ stopBtn.addEventListener("click", async () => {
 // Improved Sensor Data Reader Function
 async function readSensorData() {
     if (!port) return;
-
     const reader = port.readable.getReader();
+
     try {
         while (true) {
             const { value, done } = await reader.read();
             if (done || !port) break;
-            sensorValue.textContent = new TextDecoder().decode(value);
+
+            // Parse and display sensor data
+            const sensorReading = parseInt(new TextDecoder().decode(value));
+            sensorValue.textContent = sensorReading;
+
+            // Update chart
+            const time = new Date().toLocaleTimeString();
+            sensorChart.data.labels.push(time);
+            sensorChart.data.datasets[0].data.push(sensorReading);
+
+            // Keep only last 20 readings for smoother graph
+            if (sensorChart.data.labels.length > 20) {
+                sensorChart.data.labels.shift();
+                sensorChart.data.datasets[0].data.shift();
+            }
+
+            sensorChart.update();
         }
     } catch (error) {
         console.error("Error reading data:", error);
