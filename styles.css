@@ -5,6 +5,10 @@ body {
     background-color: #0d1117; /* GitHub dark mode background */
     color: #c9d1d9; /* Light gray text */
     background-attachment: fixed; /* Keeps the gradient fixed when scrolling */
+    .dark-mode {
+    background-color: #0d1117; /* GitHub dark background */
+    color: #c9d1d9; /* Light text */
+}
 }
 button {
 /*     padding: 10px 20px;
@@ -18,6 +22,48 @@ button {
 .btn-danger {
     background-color: #da3633; /* GitHub red */
     border-color: #da3633;
+}
+/* Toggle Switch Styling */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    border-radius: 24px;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #238636; /* GitHub green */
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
 }
 
 }
