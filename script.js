@@ -1,11 +1,50 @@
 let port;
 const toggle = document.getElementById("themeToggle");
-const themeLabel = document.getElementById("themeLabel"); // New: Label for the theme button
+const themeLabel = document.getElementById("themeLabel"); // Label for theme toggle
 const body = document.body;
 const startBtn = document.getElementById("startBtn");
 const stopBtn = document.getElementById("stopBtn");
 const sensorValue = document.getElementById("sensorValue");
 
+// Function to switch themes
+function updateTheme(isDark) {
+    if (isDark) {
+        body.classList.add("dark-mode");
+        body.classList.remove("light-mode");
+        themeLabel.textContent = "Switch to Light Mode"; // ✅ Button now asks for Light Mode
+    } else {
+        body.classList.add("light-mode");
+        body.classList.remove("dark-mode");
+        themeLabel.textContent = "Switch to Dark Mode"; // ✅ Button now asks for Dark Mode
+    }
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+}
+
+// Handle theme toggle event
+toggle.addEventListener("change", () => {
+    const isDarkMode = toggle.checked;
+    
+    // ✅ Ask user before switching
+    const userConfirmed = confirm(`Do you want to switch to ${isDarkMode ? "Dark" : "Light"} Mode?`);
+    
+    if (userConfirmed) {
+        updateTheme(isDarkMode);
+    } else {
+        toggle.checked = !isDarkMode; // Undo change if canceled
+    }
+});
+
+// Load stored theme on page load
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark") {
+    toggle.checked = true;
+    updateTheme(true);
+} else {
+    toggle.checked = false;
+    updateTheme(false);
+}
+
+// Handle Serial Connection for Arduino
 startBtn.addEventListener("click", async () => {
     try {
         port = await navigator.serial.requestPort();
@@ -26,28 +65,6 @@ stopBtn.addEventListener("click", async () => {
         console.error("Error closing port:", error);
     }
 });
-
-// Toggle between themes and update button text
-toggle.addEventListener("change", () => {
-    if (toggle.checked) {
-        body.classList.add("dark-mode");
-        localStorage.setItem("theme", "dark");
-        themeLabel.textContent = "Light Mode"; // ✅ Button now says "Light Mode"
-    } else {
-        body.classList.remove("dark-mode");
-        localStorage.setItem("theme", "light");
-        themeLabel.textContent = "Dark Mode"; // ✅ Button now says "Dark Mode"
-    }
-});
-
-// Load stored theme on refresh
-if (localStorage.getItem("theme") === "dark") {
-    toggle.checked = true;
-    body.classList.add("dark-mode");
-    themeLabel.textContent = "Light Mode"; // ✅ Ensures correct text on reload
-} else {
-    themeLabel.textContent = "Dark Mode";
-}
 
 // Improved Sensor Data Reader Function
 async function readSensorData() {
