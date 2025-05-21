@@ -1,6 +1,6 @@
 let port;
 const toggle = document.getElementById("themeToggle");
-const themeLabel = document.getElementById("themeLabel"); // Label for theme toggle
+const themeLabel = document.getElementById("themeLabel");
 const body = document.body;
 const startBtn = document.getElementById("startBtn");
 const stopBtn = document.getElementById("stopBtn");
@@ -11,11 +11,11 @@ function updateTheme(isDark) {
     if (isDark) {
         body.classList.add("dark-mode");
         body.classList.remove("light-mode");
-        themeLabel.textContent = "Switch to Light Mode"; // ✅ Button now asks for Light Mode
+        themeLabel.textContent = "Switch to Light Mode";
     } else {
         body.classList.add("light-mode");
         body.classList.remove("dark-mode");
-        themeLabel.textContent = "Switch to Dark Mode"; // ✅ Button now asks for Dark Mode
+        themeLabel.textContent = "Switch to Dark Mode";
     }
     localStorage.setItem("theme", isDark ? "dark" : "light");
 }
@@ -23,14 +23,14 @@ function updateTheme(isDark) {
 // Handle theme toggle event
 toggle.addEventListener("change", () => {
     const isDarkMode = toggle.checked;
-
+    
     // ✅ Ask user before switching
     const userConfirmed = confirm(`Do you want to switch to ${isDarkMode ? "Dark" : "Light"} Mode?`);
     
     if (userConfirmed) {
         updateTheme(isDarkMode);
     } else {
-        toggle.checked = !isDarkMode; // Undo change if canceled
+        toggle.checked = !isDarkMode;
     }
 });
 
