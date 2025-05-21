@@ -2,26 +2,29 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #f6f8fa; /* GitHub light mode background */
-    color: #1f2328; /* GitHub light text */
-    background-attachment: fixed;
+    background-color: #f6f8fa; /* Light background */
+    color: #1f2328; /* Dark text */
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 /* GitHub Dark Mode */
 .dark-mode {
-    background-color: #0d1117; /* GitHub dark mode background */
+    background-color: #0d1117; /* Dark background */
     color: #c9d1d9; /* Light text */
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 /* Buttons */
 .btn-success {
     background-color: #238636; /* GitHub green */
     border-color: #238636;
+    transition: background-color 0.3s ease;
 }
 
 .btn-danger {
     background-color: #da3633; /* GitHub red */
     border-color: #da3633;
+    transition: background-color 0.3s ease;
 }
 
 /* Toggle Switch Styling */
@@ -41,10 +44,7 @@ body {
 .slider {
     position: absolute;
     cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background-color: #ccc;
     border-radius: 24px;
     transition: 0.4s;
